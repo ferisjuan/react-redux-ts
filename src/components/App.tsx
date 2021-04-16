@@ -9,8 +9,23 @@ interface AppProps {
 }
 
 class _App extends Component<AppProps> {
+	fetchHandler = (): void => {
+		this.props.fetchTodos()
+	}
+
+	renderList(): JSX.Element[] {
+		return this.props.todos.map((todo: Todo) => (
+			<li key={todo.id}>{todo.title}</li>
+		))
+	}
+
 	render() {
-		return <div>Hi There</div>
+		return (
+			<div>
+				<button onClick={this.fetchHandler}>Fetch</button>
+				<ul>{this.renderList()}</ul>
+			</div>
+		)
 	}
 }
 
